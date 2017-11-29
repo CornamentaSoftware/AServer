@@ -20,7 +20,7 @@ public class AServer {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws UnknownHostException, SocketException, IOException {
+    public static void main(String[] args) throws UnknownHostException, SocketException, IOException, Exception {
         int puertoTS= 3000;
         int miPuerto= 5000;
         InetAddress ipTS= InetAddress.getByName("192.168.9.255");
@@ -42,9 +42,19 @@ public class AServer {
         
         //Busca al usuario
         Base base = new Base();
-        if(base.buscarUsuario(datos[3])){
+        if(base.buscarUsuario(datos[2])){
+            mensaje = datos[0] + " " + datos[1];
+            
             AES cifrar = new AES();
+            String ticketI = cifrar.Encriptar(mensaje, "CFRR");
+            socket.envia(ipTS, puertoTS, ticketI);
         }
+        //Si existe, se manda su IP y el servicio que requiere al servidor de tickets, 
+        //cifrado con AES y con la clave CFRR, que ambos conocen
+        else{
+            socket.envia(InetAddress.getByName(datos[0]), 4000, "Error");
+        }
+        //Si no existe, se envía un mensaje de error al cliente xdxd
         
     }
     
