@@ -14,7 +14,7 @@ public class Base {
         return idUser;
     }
     
-    public boolean buscarUsuario(String user, String contra){
+    public boolean buscarUsuario(String user){
         boolean existente=false;
                 try{
                     Conexion c = new Conexion();
@@ -22,8 +22,7 @@ public class Base {
                     
                     if (con!=null){
                         String sql = "SELECT * FROM usuario WHERE"
-                                + " Username_Usuario='"+user+"' && "
-                                + "Contrasenia_Usuario='"+contra+"';";
+                                + " Username_Usuario='"+user+"';";
                         PreparedStatement ps = con.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery(); 
                         
