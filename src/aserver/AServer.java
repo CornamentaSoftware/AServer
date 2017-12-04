@@ -45,7 +45,7 @@ public class AServer {
         //Busca al usuario
         Base base = new Base();
         if(base.buscarUsuario(datos[2])){
-            mensaje = datos[0] + "&" + datos[1] +"&";
+            mensaje = datos[0] + "&" + datos[1];
             AES cifrar = new AES();
             String ticketI = cifrar.Encriptar(mensaje, "CFRR");
             System.out.println(ticketI);
