@@ -21,8 +21,7 @@ public class Base {
                     Connection con = c.getConexion();
                     
                     if (con!=null){
-                        String sql = "SELECT * FROM usuario WHERE"
-                                + " Username_Usuario='"+user+"';";
+                        String sql = "SELECT * FROM usuario WHERE Username_Usuario='"+user+"';";
                         PreparedStatement ps = con.prepareStatement(sql);
                         ResultSet rs = ps.executeQuery(); 
                         
