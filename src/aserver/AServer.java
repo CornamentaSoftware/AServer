@@ -33,7 +33,7 @@ public class AServer {
 
         //Aquí checa qué datos recibió y los mete en un arreglo
         for(int i=0, j=0; i<mensaje.length() && j<3; i++){
-            if(mensaje.charAt(i)==' '){
+            if(mensaje.charAt(i)=='&'){
                 datos[j] = mensaje.substring(0,i);
                 mensaje = mensaje.substring(i+1);
                 i=0;
@@ -41,10 +41,11 @@ public class AServer {
             }
         }
         System.out.println("Aún sirve");
+        System.out.println(datos[2]);
         //Busca al usuario
         Base base = new Base();
         if(base.buscarUsuario(datos[2])){
-            mensaje = datos[0] + " " + datos[1];
+            mensaje = datos[0] + "&" + datos[1] +"&";
             AES cifrar = new AES();
             String ticketI = cifrar.Encriptar(mensaje, "CFRR");
             System.out.println(ticketI);
